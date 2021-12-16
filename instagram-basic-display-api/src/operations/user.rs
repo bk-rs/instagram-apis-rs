@@ -49,6 +49,7 @@ impl Endpoint for UserEndpoint {
     type ParseResponseOutput = EndpointRet<UserResponseBody>;
     type ParseResponseError = EndpointError;
 
+    #[allow(clippy::vec_init_then_push)]
     fn render_request(&self) -> Result<Request<Body>, Self::RenderRequestError> {
         let media_fields = format!("media.fields({})", MEDIA_FIELDS.join(","));
 
