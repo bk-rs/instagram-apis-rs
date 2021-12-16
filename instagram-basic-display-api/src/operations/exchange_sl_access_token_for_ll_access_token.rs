@@ -15,6 +15,8 @@ use super::common::{endpoint_parse_response, EndpointError, EndpointRet};
 
 pub const URL: &str = "https://graph.instagram.com/access_token";
 
+//
+#[derive(Debug, Clone)]
 pub struct ExchangeSlAccessTokenForLlAccessTokenEndpoint {
     client_secret: String,
     access_token: String,

@@ -16,6 +16,8 @@ use super::common::{
     endpoint_parse_response, EndpointError, EndpointRet, URL_PERCENT_ENCODE_ASCII_SET, URL_PREFIX,
 };
 
+//
+#[derive(Debug, Clone)]
 pub struct UserMediasEndpoint {
     user_id: String,
     access_token: String,
@@ -37,20 +39,18 @@ impl UserMediasEndpoint {
         }
     }
 
-    pub fn me(access_token: String, limit: Option<usize>, after: Option<String>) -> Self {
+    pub fn me(
+        access_token: String,
+        limit: impl Into<Option<usize>>,
+        after: impl Into<Option<String>>,
+    ) -> Self {
         Self {
             user_id: "me".to_owned(),
             access_token,
-            limit,
-            after,
+            limit: limit.into(),
+            after: after.into(),
         }
     }
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct UserMediasResponseBody {
-    pub data: Vec<Media>,
-    pub paging: Option<Paging>,
 }
 
 pub const MEDIA_FIELDS: &[&str] = &[
@@ -116,6 +116,13 @@ impl Endpoint for UserMediasEndpoint {
     ) -> Result<Self::ParseResponseOutput, Self::ParseResponseError> {
         endpoint_parse_response(response)
     }
+}
+
+//
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct UserMediasResponseBody {
+    pub data: Vec<Media>,
+    pub paging: Option<Paging>,
 }
 
 #[cfg(test)]

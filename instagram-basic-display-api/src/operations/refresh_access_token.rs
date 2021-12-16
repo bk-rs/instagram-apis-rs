@@ -16,6 +16,8 @@ use super::{
 
 pub const URL: &str = "https://graph.instagram.com/refresh_access_token";
 
+//
+#[derive(Debug, Clone)]
 pub struct RefreshAccessTokenEndpoint {
     access_token: String,
 }
@@ -24,8 +26,6 @@ impl RefreshAccessTokenEndpoint {
         Self { access_token }
     }
 }
-
-pub type RefreshAccessTokenResponseBody = ExchangeSlAccessTokenForLlAccessTokenResponseBody;
 
 impl Endpoint for RefreshAccessTokenEndpoint {
     type RenderRequestError = EndpointError;
@@ -58,6 +58,9 @@ impl Endpoint for RefreshAccessTokenEndpoint {
         endpoint_parse_response(response)
     }
 }
+
+//
+pub type RefreshAccessTokenResponseBody = ExchangeSlAccessTokenForLlAccessTokenResponseBody;
 
 #[cfg(test)]
 mod tests {

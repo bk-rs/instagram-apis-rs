@@ -20,6 +20,8 @@ use super::{
     user_medias::{UserMediasResponseBody, MEDIA_FIELDS},
 };
 
+//
+#[derive(Debug, Clone)]
 pub struct UserEndpoint {
     user_id: String,
     access_token: String,
