@@ -3,7 +3,7 @@
 use http_api_client_endpoint::{
     http::{
         header::{ACCEPT, USER_AGENT},
-        Method, Version,
+        Method,
     },
     Body, Endpoint, Request, Response,
 };
@@ -45,7 +45,6 @@ impl Endpoint for ExchangeSlAccessTokenForLlAccessTokenEndpoint {
         let request = Request::builder()
             .method(Method::GET)
             .uri(url.as_str())
-            .version(Version::HTTP_11)
             .header(USER_AGENT, "curl/7.72.0")
             .header(ACCEPT, "application/json")
             .body(vec![])

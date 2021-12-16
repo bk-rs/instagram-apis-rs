@@ -15,6 +15,8 @@ pub const URL_PERCENT_ENCODE_ASCII_SET: &AsciiSet = &NON_ALPHANUMERIC
     .remove(b'(')
     .remove(b')');
 
+pub const URL_PREFIX: &str = "https://graph.instagram.com/v12.0";
+
 use crate::objects::ResponseErrorBody;
 
 //

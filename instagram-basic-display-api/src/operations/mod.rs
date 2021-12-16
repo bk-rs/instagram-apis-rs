@@ -10,5 +10,5 @@ pub use exchange_sl_access_token_for_ll_access_token::{
     ExchangeSlAccessTokenForLlAccessTokenResponseBody,
 };
 pub use refresh_access_token::{RefreshAccessTokenEndpoint, RefreshAccessTokenResponseBody};
-
-pub const URL_PREFIX: &str = "https://graph.instagram.com";
+pub use user::{UserEndpoint, UserResponseBody};
+pub use user_medias::{UserMediasEndpoint, UserMediasResponseBody};
