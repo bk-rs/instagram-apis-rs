@@ -1,6 +1,6 @@
 [package]
 name = "instagram-basic-display-api"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["vkill <vkill.net@gmail.com>"]
 edition = "2021"
 description = "Instagram Basic Display API"
@@ -15,14 +15,14 @@ readme = "README.md"
 [dependencies]
 http-api-client-endpoint = { version = "0.2", default-features = false }
 
-serde = { version = "1.0", default-features = false, features = ["derive"] }
-serde_json = { version = "1.0", default-features = false }
-serde-aux = { version = "2.2", default-features = false }
+serde = { version = "1", default-features = false, features = ["derive"] }
+serde_json = { version = "1", default-features = false }
+serde-aux = { version = "4", default-features = false }
 serde-enum-str = { version = "0.2", default-features = false }
 chrono = { version = "0.4", default-features = false, features = ["serde"] }
-url = { version = "2.2", default-features = false }
-percent-encoding = { version = "2.1", default-features = false }
+url = { version = "2.3", default-features = false }
+percent-encoding = { version = "2.2", default-features = false }
 
 instagram-link = { version = "0.1", default-features = false }
 
-thiserror = { version = "1.0", default-features = false }
+thiserror = { version = "1", default-features = false }
