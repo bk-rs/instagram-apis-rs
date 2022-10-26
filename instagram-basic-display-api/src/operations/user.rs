@@ -14,8 +14,8 @@ use crate::objects::User;
 
 use super::{
     common::{
-        endpoint_parse_response, EndpointError, EndpointRet, URL_PERCENT_ENCODE_ASCII_SET,
-        URL_PREFIX,
+        endpoint_parse_response, EndpointError, EndpointRet, API_VERSION, BASE_URL,
+        URL_PERCENT_ENCODE_ASCII_SET,
     },
     user_medias::{UserMediasResponseBody, MEDIA_FIELDS},
 };
@@ -26,6 +26,8 @@ pub struct UserEndpoint {
     user_id: String,
     access_token: String,
     with_media: bool,
+    //
+    api_version: Option<String>,
 }
 impl UserEndpoint {
     pub fn new(user_id: u64, access_token: String, with_media: bool) -> Self {
@@ -33,6 +35,7 @@ impl UserEndpoint {
             user_id: user_id.to_string(),
             access_token,
             with_media,
+            api_version: None,
         }
     }
 
@@ -41,7 +44,13 @@ impl UserEndpoint {
             user_id: "me".to_owned(),
             access_token,
             with_media,
+            api_version: None,
         }
+    }
+
+    pub fn with_api_version(mut self, api_version: String) -> Self {
+        self.api_version = Some(api_version);
+        self
     }
 }
 
@@ -70,8 +79,9 @@ impl Endpoint for UserEndpoint {
         query_pairs.push(("access_token", self.access_token.to_owned()));
 
         let url = format!(
-            "{}/{}?{}",
-            URL_PREFIX,
+            "{}/{}/{}?{}",
+            BASE_URL,
+            self.api_version.as_deref().unwrap_or(API_VERSION),
             self.user_id,
             query_pairs
                 .into_iter()
@@ -120,12 +130,18 @@ mod tests {
             .render_request()
             .unwrap();
         assert_eq!(req.method(), Method::GET);
-        assert_eq!(req.uri(), "https://graph.instagram.com/v12.0/123?fields=account_type%2Cid%2Cusername&access_token=TOKEN");
+        assert_eq!(req.uri(), "https://graph.instagram.com/v15.0/123?fields=account_type%2Cid%2Cusername&access_token=TOKEN");
 
         let req = UserEndpoint::me("TOKEN".to_owned(), false)
             .render_request()
             .unwrap();
         assert_eq!(req.method(), Method::GET);
+        assert_eq!(req.uri(), "https://graph.instagram.com/v15.0/me?fields=account_type%2Cid%2Cusername&access_token=TOKEN");
+
+        let req = UserEndpoint::me("TOKEN".to_owned(), false)
+            .with_api_version("v12.0".into())
+            .render_request()
+            .unwrap();
         assert_eq!(req.uri(), "https://graph.instagram.com/v12.0/me?fields=account_type%2Cid%2Cusername&access_token=TOKEN");
     }
 

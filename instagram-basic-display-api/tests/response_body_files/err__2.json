@@ -1,0 +1,8 @@
+{
+    "error": {
+        "message": "Unsupported request - method type: get",
+        "type": "IGApiException",
+        "code": 100,
+        "fbtrace_id": "AQ7NjdFzWnGXbtJJ9cS7ukc"
+    }
+}

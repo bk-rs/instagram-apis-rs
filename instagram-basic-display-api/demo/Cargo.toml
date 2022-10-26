@@ -1,0 +1,16 @@
+[package]
+name = "instagram-basic-display-api-demo"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "me"
+path = "src/me.rs"
+
+[dependencies]
+instagram-basic-display-api = { path = ".." }
+
+http-api-isahc-client = { version = "0.2" }
+
+futures-lite = { version = "1.11" }
+env_logger = { version = "0.9" }

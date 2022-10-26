@@ -56,5 +56,10 @@ mod tests {
         ))
         .unwrap();
         assert!(body.is_not_have_permission());
+
+        let _body = serde_json::from_str::<ResponseErrorBody>(include_str!(
+            "../../tests/response_body_files/err__2.json"
+        ))
+        .unwrap();
     }
 }

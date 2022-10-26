@@ -13,7 +13,8 @@ use serde::{Deserialize, Serialize};
 use crate::objects::{Media, Paging};
 
 use super::common::{
-    endpoint_parse_response, EndpointError, EndpointRet, URL_PERCENT_ENCODE_ASCII_SET, URL_PREFIX,
+    endpoint_parse_response, EndpointError, EndpointRet, API_VERSION, BASE_URL,
+    URL_PERCENT_ENCODE_ASCII_SET,
 };
 
 //
@@ -23,6 +24,8 @@ pub struct UserMediasEndpoint {
     access_token: String,
     limit: Option<usize>,
     after: Option<String>,
+    //
+    api_version: Option<String>,
 }
 impl UserMediasEndpoint {
     pub fn new(
@@ -36,6 +39,7 @@ impl UserMediasEndpoint {
             access_token,
             limit,
             after,
+            api_version: None,
         }
     }
 
@@ -49,7 +53,13 @@ impl UserMediasEndpoint {
             access_token,
             limit: limit.into(),
             after: after.into(),
+            api_version: None,
         }
+    }
+
+    pub fn with_api_version(mut self, api_version: String) -> Self {
+        self.api_version = Some(api_version);
+        self
     }
 }
 
@@ -89,8 +99,9 @@ impl Endpoint for UserMediasEndpoint {
         query_pairs.push(("access_token", self.access_token.to_owned()));
 
         let url = format!(
-            "{}/{}/media?{}",
-            URL_PREFIX,
+            "{}/{}/{}/media?{}",
+            BASE_URL,
+            self.api_version.as_deref().unwrap_or(API_VERSION),
             self.user_id,
             query_pairs
                 .into_iter()
@@ -135,19 +146,19 @@ mod tests {
             .render_request()
             .unwrap();
         assert_eq!(req.method(), Method::GET);
-        assert_eq!(req.uri(), "https://graph.instagram.com/v12.0/123/media?fields=caption%2Cid%2Cmedia_type%2Cmedia_url%2Cpermalink%2Cthumbnail_url%2Ctimestamp%2Cusername%2Cchildren.fields(id%2Cmedia_type%2Cmedia_url%2Cpermalink%2Cthumbnail_url%2Ctimestamp)&access_token=TOKEN");
+        assert_eq!(req.uri(), "https://graph.instagram.com/v15.0/123/media?fields=caption%2Cid%2Cmedia_type%2Cmedia_url%2Cpermalink%2Cthumbnail_url%2Ctimestamp%2Cusername%2Cchildren.fields(id%2Cmedia_type%2Cmedia_url%2Cpermalink%2Cthumbnail_url%2Ctimestamp)&access_token=TOKEN");
 
         let req = UserMediasEndpoint::me("TOKEN".to_owned(), None, None)
             .render_request()
             .unwrap();
         assert_eq!(req.method(), Method::GET);
-        assert_eq!(req.uri(), "https://graph.instagram.com/v12.0/me/media?fields=caption%2Cid%2Cmedia_type%2Cmedia_url%2Cpermalink%2Cthumbnail_url%2Ctimestamp%2Cusername%2Cchildren.fields(id%2Cmedia_type%2Cmedia_url%2Cpermalink%2Cthumbnail_url%2Ctimestamp)&access_token=TOKEN");
+        assert_eq!(req.uri(), "https://graph.instagram.com/v15.0/me/media?fields=caption%2Cid%2Cmedia_type%2Cmedia_url%2Cpermalink%2Cthumbnail_url%2Ctimestamp%2Cusername%2Cchildren.fields(id%2Cmedia_type%2Cmedia_url%2Cpermalink%2Cthumbnail_url%2Ctimestamp)&access_token=TOKEN");
 
         let req = UserMediasEndpoint::me("TOKEN".to_owned(), Some(10), Some("AFTER".to_owned()))
             .render_request()
             .unwrap();
         assert_eq!(req.method(), Method::GET);
-        assert_eq!(req.uri(), "https://graph.instagram.com/v12.0/me/media?fields=caption%2Cid%2Cmedia_type%2Cmedia_url%2Cpermalink%2Cthumbnail_url%2Ctimestamp%2Cusername%2Cchildren.fields(id%2Cmedia_type%2Cmedia_url%2Cpermalink%2Cthumbnail_url%2Ctimestamp)&limit=10&after=AFTER&access_token=TOKEN");
+        assert_eq!(req.uri(), "https://graph.instagram.com/v15.0/me/media?fields=caption%2Cid%2Cmedia_type%2Cmedia_url%2Cpermalink%2Cthumbnail_url%2Ctimestamp%2Cusername%2Cchildren.fields(id%2Cmedia_type%2Cmedia_url%2Cpermalink%2Cthumbnail_url%2Ctimestamp)&limit=10&after=AFTER&access_token=TOKEN");
     }
 
     #[test]
