@@ -22,10 +22,12 @@ async fn run() -> Result<(), Box<dyn error::Error>> {
 
     let client = IsahcClient::new()?;
 
-    let me =
+    let exchange_sl_access_token_for_ll_access_token =
         ExchangeSlAccessTokenForLlAccessTokenEndpoint::new(app_secret, short_lived_access_token);
 
-    let ret = client.respond_endpoint(&me).await?;
+    let ret = client
+        .respond_endpoint(&exchange_sl_access_token_for_ll_access_token)
+        .await?;
 
     match &ret {
         EndpointRet::Ok(ok_json) => {

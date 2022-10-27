@@ -167,7 +167,13 @@ mod tests {
             "../../tests/response_body_files/user_medias_ok.json"
         ))
         .unwrap();
-
         assert_eq!(body.data.len(), 36);
+
+        let body = serde_json::from_str::<UserMediasResponseBody>(include_str!(
+            "../../tests/response_body_files/user_medias_ok__limit_1.json"
+        ))
+        .unwrap();
+        assert_eq!(body.data.len(), 1);
+        assert!(body.paging.unwrap().next_cursor().is_some());
     }
 }

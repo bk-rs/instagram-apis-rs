@@ -15,6 +15,10 @@ path = "src/me.rs"
 name = "ig_b_d_a_refresh_access_token"
 path = "src/refresh_access_token.rs"
 
+[[bin]]
+name = "ig_b_d_a_user_medias"
+path = "src/user_medias.rs"
+
 [dependencies]
 instagram-basic-display-api = { path = ".." }
 
