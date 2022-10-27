@@ -9,6 +9,9 @@ pub struct User {
     #[serde(deserialize_with = "deserialize_number_from_string")]
     pub id: u64,
     pub username: String,
+    /*
+    media_count = edge_owner_to_timeline_media.count + count of reels without "share to Feed"
+    */
     #[serde(default)]
     pub media_count: Option<usize>,
 }

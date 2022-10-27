@@ -93,7 +93,7 @@ impl Endpoint for UserEndpoint {
         let request = Request::builder()
             .method(Method::GET)
             .uri(url.as_str())
-            .header(USER_AGENT, "curl/7.72.0")
+            .header(USER_AGENT, "instagram-basic-display-api")
             .header(ACCEPT, "application/json")
             .body(vec![])
             .map_err(EndpointError::MakeRequestFailed)?;

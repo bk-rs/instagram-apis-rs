@@ -4,8 +4,16 @@ version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "me"
+name = "ig_b_d_a_exchange_sl_access_token_for_ll_access_token"
+path = "src/exchange_sl_access_token_for_ll_access_token.rs"
+
+[[bin]]
+name = "ig_b_d_a_me"
 path = "src/me.rs"
+
+[[bin]]
+name = "ig_b_d_a_refresh_access_token"
+path = "src/refresh_access_token.rs"
 
 [dependencies]
 instagram-basic-display-api = { path = ".." }

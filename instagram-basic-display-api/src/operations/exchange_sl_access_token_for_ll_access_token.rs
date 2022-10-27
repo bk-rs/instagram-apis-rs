@@ -11,21 +11,19 @@ use http_api_client_endpoint::{
 use serde::{Deserialize, Serialize};
 use url::Url;
 
-use super::common::{endpoint_parse_response, EndpointError, EndpointRet};
-
-pub const URL: &str = "https://graph.instagram.com/access_token";
+use super::common::{endpoint_parse_response, EndpointError, EndpointRet, BASE_URL};
 
 //
 #[derive(Debug, Clone)]
 pub struct ExchangeSlAccessTokenForLlAccessTokenEndpoint {
     client_secret: String,
-    access_token: String,
+    short_lived_access_token: String,
 }
 impl ExchangeSlAccessTokenForLlAccessTokenEndpoint {
-    pub fn new(client_secret: String, access_token: String) -> Self {
+    pub fn new(client_secret: String, short_lived_access_token: String) -> Self {
         Self {
             client_secret,
-            access_token,
+            short_lived_access_token,
         }
     }
 }
@@ -37,17 +35,18 @@ impl Endpoint for ExchangeSlAccessTokenForLlAccessTokenEndpoint {
     type ParseResponseError = EndpointError;
 
     fn render_request(&self) -> Result<Request<Body>, Self::RenderRequestError> {
-        let mut url = Url::parse(URL).map_err(EndpointError::MakeRequestUrlFailed)?;
+        let mut url = Url::parse(format!("{}/access_token", BASE_URL).as_str())
+            .map_err(EndpointError::MakeRequestUrlFailed)?;
 
         url.query_pairs_mut()
             .append_pair("grant_type", "ig_exchange_token")
             .append_pair("client_secret", &self.client_secret)
-            .append_pair("access_token", &self.access_token);
+            .append_pair("access_token", &self.short_lived_access_token);
 
         let request = Request::builder()
             .method(Method::GET)
             .uri(url.as_str())
-            .header(USER_AGENT, "curl/7.72.0")
+            .header(USER_AGENT, "instagram-basic-display-api")
             .header(ACCEPT, "application/json")
             .body(vec![])
             .map_err(EndpointError::MakeRequestFailed)?;

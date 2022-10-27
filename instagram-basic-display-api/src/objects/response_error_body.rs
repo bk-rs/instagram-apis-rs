@@ -52,6 +52,12 @@ mod tests {
         assert!(body.is_access_token_session_has_expired());
 
         let body = serde_json::from_str::<ResponseErrorBody>(include_str!(
+            "../../tests/response_body_files/me_err__400.json"
+        ))
+        .unwrap();
+        assert!(body.is_access_token_session_has_expired());
+
+        let body = serde_json::from_str::<ResponseErrorBody>(include_str!(
             "../../tests/response_body_files/err__1.json"
         ))
         .unwrap();

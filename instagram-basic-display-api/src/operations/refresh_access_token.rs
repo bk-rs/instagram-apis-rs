@@ -10,20 +10,20 @@ use http_api_client_endpoint::{
 use url::Url;
 
 use super::{
-    common::{endpoint_parse_response, EndpointError, EndpointRet},
+    common::{endpoint_parse_response, EndpointError, EndpointRet, BASE_URL},
     ExchangeSlAccessTokenForLlAccessTokenResponseBody,
 };
-
-pub const URL: &str = "https://graph.instagram.com/refresh_access_token";
 
 //
 #[derive(Debug, Clone)]
 pub struct RefreshAccessTokenEndpoint {
-    access_token: String,
+    long_lived_access_token: String,
 }
 impl RefreshAccessTokenEndpoint {
-    pub fn new(access_token: String) -> Self {
-        Self { access_token }
+    pub fn new(long_lived_access_token: String) -> Self {
+        Self {
+            long_lived_access_token,
+        }
     }
 }
 
@@ -34,16 +34,17 @@ impl Endpoint for RefreshAccessTokenEndpoint {
     type ParseResponseError = EndpointError;
 
     fn render_request(&self) -> Result<Request<Body>, Self::RenderRequestError> {
-        let mut url = Url::parse(URL).map_err(EndpointError::MakeRequestUrlFailed)?;
+        let mut url = Url::parse(format!("{}/refresh_access_token", BASE_URL).as_str())
+            .map_err(EndpointError::MakeRequestUrlFailed)?;
 
         url.query_pairs_mut()
             .append_pair("grant_type", "ig_refresh_token")
-            .append_pair("access_token", &self.access_token);
+            .append_pair("access_token", &self.long_lived_access_token);
 
         let request = Request::builder()
             .method(Method::GET)
             .uri(url.as_str())
-            .header(USER_AGENT, "curl/7.72.0")
+            .header(USER_AGENT, "instagram-basic-display-api")
             .header(ACCEPT, "application/json")
             .body(vec![])
             .map_err(EndpointError::MakeRequestFailed)?;
