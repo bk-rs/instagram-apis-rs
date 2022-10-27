@@ -31,6 +31,13 @@ impl ResponseErrorBody {
             .contains("session has expired")
     }
 
+    pub fn is_access_token_session_has_been_invalidated(&self) -> bool {
+        self.error
+            .message
+            .to_lowercase()
+            .contains("session has been invalidated")
+    }
+
     pub fn is_not_have_permission(&self) -> bool {
         self.error
             .message
@@ -45,6 +52,7 @@ mod tests {
 
     #[test]
     fn test_de_response_error_body() {
+        //
         let body = serde_json::from_str::<ResponseErrorBody>(include_str!(
             "../../tests/response_body_files/exchange_sl_access_token_for_ll_access_token_err__400.json"
         ))
@@ -57,15 +65,24 @@ mod tests {
         .unwrap();
         assert!(body.is_access_token_session_has_expired());
 
+        //
         let body = serde_json::from_str::<ResponseErrorBody>(include_str!(
             "../../tests/response_body_files/err__1.json"
         ))
         .unwrap();
         assert!(body.is_not_have_permission());
 
+        //
         let _body = serde_json::from_str::<ResponseErrorBody>(include_str!(
             "../../tests/response_body_files/err__2.json"
         ))
         .unwrap();
+
+        //
+        let body = serde_json::from_str::<ResponseErrorBody>(include_str!(
+            "../../tests/response_body_files/err__3.json"
+        ))
+        .unwrap();
+        assert!(body.is_access_token_session_has_been_invalidated());
     }
 }

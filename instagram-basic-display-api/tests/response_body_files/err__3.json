@@ -1,0 +1,8 @@
+{
+    "error": {
+        "message": "Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.",
+        "type": "OAuthException",
+        "code": 190,
+        "fbtrace_id": "AcIOG4kOlL7jyZ-Oj14Vede"
+    }
+}

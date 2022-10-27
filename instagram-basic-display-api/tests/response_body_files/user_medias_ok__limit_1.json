@@ -15,6 +15,6 @@
             "before": "QVFIUkVlcUg3SV9NVFktWWpydHdLYVJLWURXdW5pYjRwM3F4S2RyakwweWhSM25IOVFVRXpscjBzV3F2M2ZAHcERaa2pyNGlta014MGhDWThGM0xZANE5RVWN3",
             "after": "QVFIUkVlcUg3SV9NVFktWWpydHdLYVJLWURXdW5pYjRwM3F4S2RyakwweWhSM25IOVFVRXpscjBzV3F2M2ZAHcERaa2pyNGlta014MGhDWThGM0xZANE5RVWN3"
         },
-        "next": "https:\\/\\/graph.instagram.com\\/v15.0\\/17841444369274941\\/media?access_token=IGQVJYU3hiVjZAQZAGRabHpXZAWtsLWI1enRKRTRLWjJXX2V2clpzY213akY0STJrbXZADUzVWTlM4aTRlaF9tWDBCR3ZACVVFkeVctQUtRWENFMVFCX3dJTzJ0QkZAheFZAKeF9oREtOMUZAR&fields=caption\\u00252Cid\\u00252Cmedia_type\\u00252Cmedia_url\\u00252Cpermalink\\u00252Cthumbnail_url\\u00252Ctimestamp\\u00252Cusername\\u00252Cchildren.fields\\u002528id\\u00252Cmedia_type\\u00252Cmedia_url\\u00252Cpermalink\\u00252Cthumbnail_url\\u00252Ctimestamp\\u002529&limit=1&after=QVFIUkVlcUg3SV9NVFktWWpydHdLYVJLWURXdW5pYjRwM3F4S2RyakwweWhSM25IOVFVRXpscjBzV3F2M2ZAHcERaa2pyNGlta014MGhDWThGM0xZANE5RVWN3"
+        "next": "https:\\/\\/graph.instagram.com\\/v15.0\\/17841444369274941\\/media?access_token=xxx&fields=caption\\u00252Cid\\u00252Cmedia_type\\u00252Cmedia_url\\u00252Cpermalink\\u00252Cthumbnail_url\\u00252Ctimestamp\\u00252Cusername\\u00252Cchildren.fields\\u002528id\\u00252Cmedia_type\\u00252Cmedia_url\\u00252Cpermalink\\u00252Cthumbnail_url\\u00252Ctimestamp\\u002529&limit=1&after=QVFIUkVlcUg3SV9NVFktWWpydHdLYVJLWURXdW5pYjRwM3F4S2RyakwweWhSM25IOVFVRXpscjBzV3F2M2ZAHcERaa2pyNGlta014MGhDWThGM0xZANE5RVWN3"
     }
 }
