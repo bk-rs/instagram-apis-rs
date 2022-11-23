@@ -24,5 +24,7 @@ url = { version = "2.3", default-features = false }
 percent-encoding = { version = "2.2", default-features = false }
 
 instagram-link = { version = "0.1", default-features = false }
+facebook-graph-api-object-error = { version = "0.1", default-features = false }
+facebook-graph-api-object-paging = { version = "0.1", default-features = false }
 
 thiserror = { version = "1", default-features = false }
