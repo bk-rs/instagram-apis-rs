@@ -22,11 +22,11 @@ pub struct ExchangeSlAccessTokenForLlAccessTokenEndpoint {
 }
 impl ExchangeSlAccessTokenForLlAccessTokenEndpoint {
     pub fn new(
-        client_secret: String,
+        app_secret: impl AsRef<str>,
         short_lived_access_token: impl Into<ShortLivedUserAccessToken>,
     ) -> Self {
         Self {
-            client_secret,
+            client_secret: app_secret.as_ref().into(),
             short_lived_access_token: short_lived_access_token.into(),
         }
     }
@@ -80,12 +80,9 @@ mod tests {
 
     #[test]
     fn test_render_request() {
-        let req = ExchangeSlAccessTokenForLlAccessTokenEndpoint::new(
-            "SECRET".to_owned(),
-            "TOKEN".to_owned(),
-        )
-        .render_request()
-        .unwrap();
+        let req = ExchangeSlAccessTokenForLlAccessTokenEndpoint::new("SECRET", "TOKEN")
+            .render_request()
+            .unwrap();
         assert_eq!(req.method(), Method::GET);
         assert_eq!(req.uri(), "https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=SECRET&access_token=TOKEN");
     }

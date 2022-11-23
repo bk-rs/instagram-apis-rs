@@ -70,7 +70,7 @@ mod tests {
 
     #[test]
     fn test_render_request() {
-        let req = RefreshAccessTokenEndpoint::new("TOKEN".to_owned())
+        let req = RefreshAccessTokenEndpoint::new("TOKEN")
             .render_request()
             .unwrap();
         assert_eq!(req.method(), Method::GET);
