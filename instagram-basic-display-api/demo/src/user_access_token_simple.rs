@@ -24,7 +24,7 @@ async fn run() -> Result<(), Box<dyn error::Error>> {
     let client = IsahcClient::new()?;
 
     //
-    let me = UserEndpoint::me(&short_lived_user_access_token, true);
+    let me = UserEndpoint::me(&short_lived_user_access_token, false);
     let ret = client.respond_endpoint(&me).await?;
     match &ret {
         EndpointRet::Ok(ok_json) => {

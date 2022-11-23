@@ -7,7 +7,6 @@ use http_api_client_endpoint::{
     },
     Body, Endpoint, Request, Response,
 };
-
 use serde::{Deserialize, Serialize};
 use url::Url;
 

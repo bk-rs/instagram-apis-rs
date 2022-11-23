@@ -7,12 +7,10 @@ use http_api_client_endpoint::{
     },
     Body, Endpoint, Request, Response,
 };
+use serde::{Deserialize, Serialize};
 use url::Url;
 
-use super::{
-    common::{endpoint_parse_response, EndpointError, EndpointRet, BASE_URL},
-    ExchangeSlAccessTokenForLlAccessTokenResponseBody,
-};
+use super::common::{endpoint_parse_response, EndpointError, EndpointRet, BASE_URL};
 use crate::types::LongLivedUserAccessToken;
 
 //
@@ -62,7 +60,12 @@ impl Endpoint for RefreshAccessTokenEndpoint {
 }
 
 //
-pub type RefreshAccessTokenResponseBody = ExchangeSlAccessTokenForLlAccessTokenResponseBody;
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct RefreshAccessTokenResponseBody {
+    pub access_token: String,
+    pub token_type: String,
+    pub expires_in: Option<u32>,
+}
 
 #[cfg(test)]
 mod tests {
