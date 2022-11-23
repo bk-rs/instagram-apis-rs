@@ -8,7 +8,7 @@ pub struct ResponseErrorBody {
 
 impl ResponseErrorBody {
     #[deprecated(
-        since = "0.2.1",
+        since = "0.3.0",
         note = "use `.error.is_access_token_session_has_expired()` instead"
     )]
     pub fn is_access_token_session_has_expired(&self) -> bool {
@@ -16,7 +16,7 @@ impl ResponseErrorBody {
     }
 
     #[deprecated(
-        since = "0.2.1",
+        since = "0.3.0",
         note = "use `.error.is_access_token_session_has_been_invalidated()` instead"
     )]
     pub fn is_access_token_session_has_been_invalidated(&self) -> bool {
@@ -24,7 +24,7 @@ impl ResponseErrorBody {
     }
 
     #[deprecated(
-        since = "0.2.1",
+        since = "0.3.0",
         note = "use `.error.to_known_error_case().map(|x| matches!(x, KnownErrorCase::PermissionNotGrantedOrRemoved)) == Some(true)` instead"
     )]
     pub fn is_not_have_permission(&self) -> bool {
