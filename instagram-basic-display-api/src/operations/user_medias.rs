@@ -10,18 +10,20 @@ use http_api_client_endpoint::{
 use percent_encoding::percent_encode;
 use serde::{Deserialize, Serialize};
 
-use crate::objects::{Media, Paging};
-
 use super::common::{
     endpoint_parse_response, EndpointError, EndpointRet, API_VERSION, BASE_URL,
     URL_PERCENT_ENCODE_ASCII_SET,
+};
+use crate::{
+    objects::{Media, Paging},
+    types::UserAccessToken,
 };
 
 //
 #[derive(Debug, Clone)]
 pub struct UserMediasEndpoint {
     user_id: String,
-    access_token: String,
+    access_token: UserAccessToken,
     limit: Option<usize>,
     after: Option<String>,
     //
@@ -30,13 +32,13 @@ pub struct UserMediasEndpoint {
 impl UserMediasEndpoint {
     pub fn new(
         user_id: u64,
-        access_token: String,
+        access_token: impl Into<UserAccessToken>,
         limit: Option<usize>,
         after: Option<String>,
     ) -> Self {
         Self {
             user_id: user_id.to_string(),
-            access_token,
+            access_token: access_token.into(),
             limit,
             after,
             api_version: None,
@@ -44,13 +46,13 @@ impl UserMediasEndpoint {
     }
 
     pub fn me(
-        access_token: String,
+        access_token: impl Into<UserAccessToken>,
         limit: impl Into<Option<usize>>,
         after: impl Into<Option<String>>,
     ) -> Self {
         Self {
             user_id: "me".to_owned(),
-            access_token,
+            access_token: access_token.into(),
             limit: limit.into(),
             after: after.into(),
             api_version: None,
@@ -96,7 +98,7 @@ impl Endpoint for UserMediasEndpoint {
         if let Some(after) = &self.after {
             query_pairs.push(("after", after.to_owned()));
         }
-        query_pairs.push(("access_token", self.access_token.to_owned()));
+        query_pairs.push(("access_token", self.access_token.inner().to_owned()));
 
         let url = format!(
             "{}/{}/{}/media?{}",

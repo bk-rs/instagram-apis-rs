@@ -13,16 +13,17 @@ use super::{
     common::{endpoint_parse_response, EndpointError, EndpointRet, BASE_URL},
     ExchangeSlAccessTokenForLlAccessTokenResponseBody,
 };
+use crate::types::LongLivedUserAccessToken;
 
 //
 #[derive(Debug, Clone)]
 pub struct RefreshAccessTokenEndpoint {
-    long_lived_access_token: String,
+    long_lived_access_token: LongLivedUserAccessToken,
 }
 impl RefreshAccessTokenEndpoint {
-    pub fn new(long_lived_access_token: String) -> Self {
+    pub fn new(long_lived_access_token: impl Into<LongLivedUserAccessToken>) -> Self {
         Self {
-            long_lived_access_token,
+            long_lived_access_token: long_lived_access_token.into(),
         }
     }
 }

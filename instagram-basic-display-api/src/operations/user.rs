@@ -10,8 +10,6 @@ use http_api_client_endpoint::{
 use percent_encoding::percent_encode;
 use serde::{Deserialize, Serialize};
 
-use crate::objects::User;
-
 use super::{
     common::{
         endpoint_parse_response, EndpointError, EndpointRet, API_VERSION, BASE_URL,
@@ -19,30 +17,31 @@ use super::{
     },
     user_medias::{UserMediasResponseBody, MEDIA_FIELDS},
 };
+use crate::{objects::User, types::access_token::UserAccessToken};
 
 //
 #[derive(Debug, Clone)]
 pub struct UserEndpoint {
     user_id: String,
-    access_token: String,
+    access_token: UserAccessToken,
     with_media: bool,
     //
     api_version: Option<String>,
 }
 impl UserEndpoint {
-    pub fn new(user_id: u64, access_token: String, with_media: bool) -> Self {
+    pub fn new(user_id: u64, access_token: impl Into<UserAccessToken>, with_media: bool) -> Self {
         Self {
             user_id: user_id.to_string(),
-            access_token,
+            access_token: access_token.into(),
             with_media,
             api_version: None,
         }
     }
 
-    pub fn me(access_token: String, with_media: bool) -> Self {
+    pub fn me(access_token: impl Into<UserAccessToken>, with_media: bool) -> Self {
         Self {
             user_id: "me".to_owned(),
-            access_token,
+            access_token: access_token.into(),
             with_media,
             api_version: None,
         }
@@ -76,7 +75,7 @@ impl Endpoint for UserEndpoint {
             "fields",
             percent_encode(fields.as_bytes(), URL_PERCENT_ENCODE_ASCII_SET).to_string(),
         ));
-        query_pairs.push(("access_token", self.access_token.to_owned()));
+        query_pairs.push(("access_token", self.access_token.inner().to_owned()));
 
         let url = format!(
             "{}/{}/{}?{}",

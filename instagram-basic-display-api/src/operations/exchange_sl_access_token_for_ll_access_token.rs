@@ -12,18 +12,22 @@ use serde::{Deserialize, Serialize};
 use url::Url;
 
 use super::common::{endpoint_parse_response, EndpointError, EndpointRet, BASE_URL};
+use crate::types::ShortLivedUserAccessToken;
 
 //
 #[derive(Debug, Clone)]
 pub struct ExchangeSlAccessTokenForLlAccessTokenEndpoint {
     client_secret: String,
-    short_lived_access_token: String,
+    short_lived_access_token: ShortLivedUserAccessToken,
 }
 impl ExchangeSlAccessTokenForLlAccessTokenEndpoint {
-    pub fn new(client_secret: String, short_lived_access_token: String) -> Self {
+    pub fn new(
+        client_secret: String,
+        short_lived_access_token: impl Into<ShortLivedUserAccessToken>,
+    ) -> Self {
         Self {
             client_secret,
-            short_lived_access_token,
+            short_lived_access_token: short_lived_access_token.into(),
         }
     }
 }

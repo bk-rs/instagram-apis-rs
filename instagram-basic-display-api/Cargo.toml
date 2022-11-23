@@ -22,6 +22,7 @@ serde-enum-str = { version = "0.2", default-features = false }
 chrono = { version = "0.4", default-features = false, features = ["serde"] }
 url = { version = "2.3", default-features = false }
 percent-encoding = { version = "2.2", default-features = false }
+wrapping-macro = { version = "0.1", default-features = false }
 
 instagram-link = { version = "0.1", default-features = false }
 facebook-graph-api-object-error = { version = "0.1", default-features = false }
