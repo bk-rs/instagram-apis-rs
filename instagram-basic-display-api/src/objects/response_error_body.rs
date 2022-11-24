@@ -1,4 +1,4 @@
-use facebook_graph_api_object_error::{Error, KnownErrorCase};
+use facebook_graph_api_object_error::Error;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -25,12 +25,12 @@ impl ResponseErrorBody {
 
     #[deprecated(
         since = "0.3.0",
-        note = "use `.error.to_known_error_case().map(|x| matches!(x, KnownErrorCase::PermissionNotGrantedOrRemoved)) == Some(true)` instead"
+        note = "use `.error.to_known_error_case().map(|x| x.is_permission_not_granted_or_removed()) == Some(true)` instead"
     )]
     pub fn is_not_have_permission(&self) -> bool {
         self.error
             .to_known_error_case()
-            .map(|x| matches!(x, KnownErrorCase::PermissionNotGrantedOrRemoved))
+            .map(|x| x.is_permission_not_granted_or_removed())
             == Some(true)
     }
 }
@@ -62,7 +62,7 @@ mod tests {
         assert!(
             body.error
                 .to_known_error_case()
-                .map(|x| matches!(x, KnownErrorCase::PermissionNotGrantedOrRemoved))
+                .map(|x| x.is_permission_not_granted_or_removed())
                 == Some(true)
         );
 
