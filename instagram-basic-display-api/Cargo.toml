@@ -1,6 +1,6 @@
 [package]
 name = "instagram-basic-display-api"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["vkill <vkill.net@gmail.com>"]
 edition = "2021"
 description = "Instagram Basic Display API"
