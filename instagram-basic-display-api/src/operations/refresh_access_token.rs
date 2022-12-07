@@ -33,7 +33,7 @@ impl Endpoint for RefreshAccessTokenEndpoint {
     type ParseResponseError = EndpointError;
 
     fn render_request(&self) -> Result<Request<Body>, Self::RenderRequestError> {
-        let mut url = Url::parse(format!("{}/refresh_access_token", BASE_URL).as_str())
+        let mut url = Url::parse(format!("{BASE_URL}/refresh_access_token").as_str())
             .map_err(EndpointError::MakeRequestUrlFailed)?;
 
         url.query_pairs_mut()

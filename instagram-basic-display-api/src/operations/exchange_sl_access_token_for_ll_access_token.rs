@@ -38,7 +38,7 @@ impl Endpoint for ExchangeSlAccessTokenForLlAccessTokenEndpoint {
     type ParseResponseError = EndpointError;
 
     fn render_request(&self) -> Result<Request<Body>, Self::RenderRequestError> {
-        let mut url = Url::parse(format!("{}/access_token", BASE_URL).as_str())
+        let mut url = Url::parse(format!("{BASE_URL}/access_token").as_str())
             .map_err(EndpointError::MakeRequestUrlFailed)?;
 
         url.query_pairs_mut()

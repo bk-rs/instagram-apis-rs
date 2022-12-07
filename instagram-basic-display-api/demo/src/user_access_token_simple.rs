@@ -28,10 +28,10 @@ async fn run() -> Result<(), Box<dyn error::Error>> {
     let ret = client.respond_endpoint(&me).await?;
     match &ret {
         EndpointRet::Ok(ok_json) => {
-            println!("{:?}", ok_json);
+            println!("{ok_json:?}");
         }
         EndpointRet::Other(_) => {
-            panic!("{:?}", ret);
+            panic!("{ret:?}");
         }
     }
 
@@ -46,12 +46,12 @@ async fn run() -> Result<(), Box<dyn error::Error>> {
         .await?;
     let long_lived_user_access_token = match &ret {
         EndpointRet::Ok(ok_json) => {
-            println!("{:?}", ok_json);
+            println!("{ok_json:?}");
 
             ok_json.access_token.to_owned()
         }
         EndpointRet::Other(_) => {
-            panic!("{:?}", ret);
+            panic!("{ret:?}");
         }
     };
 
@@ -60,10 +60,10 @@ async fn run() -> Result<(), Box<dyn error::Error>> {
     let ret = client.respond_endpoint(&user_medias).await?;
     match &ret {
         EndpointRet::Ok(ok_json) => {
-            println!("{:?}", ok_json);
+            println!("{ok_json:?}");
         }
         EndpointRet::Other(_) => {
-            panic!("{:?}", ret);
+            panic!("{ret:?}");
         }
     }
 
@@ -72,12 +72,12 @@ async fn run() -> Result<(), Box<dyn error::Error>> {
     let ret = client.respond_endpoint(&refresh_access_token).await?;
     let long_lived_user_access_token_with_refreshed = match &ret {
         EndpointRet::Ok(ok_json) => {
-            println!("{:?}", ok_json);
+            println!("{ok_json:?}");
 
             ok_json.access_token.to_owned()
         }
         EndpointRet::Other(_) => {
-            panic!("{:?}", ret);
+            panic!("{ret:?}");
         }
     };
 
@@ -86,10 +86,10 @@ async fn run() -> Result<(), Box<dyn error::Error>> {
     let ret = client.respond_endpoint(&me).await?;
     match &ret {
         EndpointRet::Ok(ok_json) => {
-            println!("{:?}", ok_json);
+            println!("{ok_json:?}");
         }
         EndpointRet::Other(_) => {
-            panic!("{:?}", ret);
+            panic!("{ret:?}");
         }
     }
 

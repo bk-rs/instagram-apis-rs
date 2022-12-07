@@ -93,7 +93,7 @@ impl Endpoint for UserMediasEndpoint {
             percent_encode(fields.as_bytes(), URL_PERCENT_ENCODE_ASCII_SET).to_string(),
         ));
         if let Some(limit) = &self.limit {
-            query_pairs.push(("limit", format!("{}", limit)));
+            query_pairs.push(("limit", limit.to_string()));
         }
         if let Some(after) = &self.after {
             query_pairs.push(("after", after.to_owned()));
