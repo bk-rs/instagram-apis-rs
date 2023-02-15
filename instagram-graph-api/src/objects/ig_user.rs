@@ -43,12 +43,12 @@ impl IgUserForIgUserBusinessDiscoveryReadingOperation {
             "".into()
         };
         let media_limit = if let Some(media_limit) = media_limit {
-            format!(".limit({})", media_limit)
+            format!(".limit({media_limit})")
         } else {
             "".into()
         };
 
-        format!("biography,id,ig_id,followers_count,follows_count,media_count,name,profile_picture_url,username,website,media{}{}{{caption,comments_count,id,like_count,media_product_type,media_type,media_url,permalink,timestamp,children{{id,media_type,media_url,permalink,timestamp}}}}", media_since, media_limit).into()
+        format!("biography,id,ig_id,followers_count,follows_count,media_count,name,profile_picture_url,username,website,media{media_since}{media_limit}{{caption,comments_count,id,like_count,media_product_type,media_type,media_url,permalink,timestamp,children{{id,media_type,media_url,permalink,timestamp}}}}").into()
     }
 }
 

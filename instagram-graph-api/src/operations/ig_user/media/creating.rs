@@ -763,9 +763,9 @@ mod tests {
         match serde_json::from_str::<ResponseBodyErrJson>(content) {
             Ok(err_json) => match ExtInfoError::from_err_json(&err_json) {
                 Some(ExtInfoError::ImageUrlOrVideoUrlInvalid(msg)) => {
-                    println!("{}", msg);
+                    println!("{msg}");
                 }
-                ret => panic!("{:?}", ret),
+                ret => panic!("{ret:?}"),
             },
             Err(err) => panic!("{}", err),
         }
@@ -777,9 +777,9 @@ mod tests {
         match serde_json::from_str::<ResponseBodyErrJson>(content) {
             Ok(err_json) => match ExtInfoError::from_err_json(&err_json) {
                 Some(ExtInfoError::UserTagUsernamePrivateOrInvalid(msg)) => {
-                    println!("{}", msg);
+                    println!("{msg}");
                 }
-                ret => panic!("{:?}", ret),
+                ret => panic!("{ret:?}"),
             },
             Err(err) => panic!("{}", err),
         }
@@ -791,9 +791,9 @@ mod tests {
         match serde_json::from_str::<ResponseBodyErrJson>(content) {
             Ok(err_json) => match ExtInfoError::from_err_json(&err_json) {
                 Some(ExtInfoError::ImageAspectRatioInvalid(msg)) => {
-                    println!("{}", msg);
+                    println!("{msg}");
                 }
-                ret => panic!("{:?}", ret),
+                ret => panic!("{ret:?}"),
             },
             Err(err) => panic!("{}", err),
         }
@@ -805,9 +805,9 @@ mod tests {
         match serde_json::from_str::<ResponseBodyErrJson>(content) {
             Ok(err_json) => match ExtInfoError::from_err_json(&err_json) {
                 Some(ExtInfoError::AccountNotAllowedCreate(msg)) => {
-                    println!("{}", msg);
+                    println!("{msg}");
                 }
-                ret => panic!("{:?}", ret),
+                ret => panic!("{ret:?}"),
             },
             Err(err) => panic!("{}", err),
         }

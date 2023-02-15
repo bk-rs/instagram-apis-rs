@@ -25,7 +25,7 @@ pub enum EndpointError {
 
 impl core::fmt::Display for EndpointError {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        write!(f, "{:?}", self)
+        write!(f, "{self:?}")
     }
 }
 
