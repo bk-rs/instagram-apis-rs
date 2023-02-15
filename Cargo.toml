@@ -1,5 +1,8 @@
 [workspace]
 members = [
+    # 
     "instagram-basic-display-api",
     "instagram-basic-display-api/demo",
+    # 
+    "instagram-graph-api",
 ]

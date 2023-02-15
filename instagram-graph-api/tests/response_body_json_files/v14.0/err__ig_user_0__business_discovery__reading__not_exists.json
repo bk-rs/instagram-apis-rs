@@ -1,0 +1,12 @@
+{
+    "error": {
+        "message": "Invalid user id",
+        "type": "OAuthException",
+        "code": 110,
+        "error_subcode": 2207013,
+        "is_transient": false,
+        "error_user_title": "Cannot find User",
+        "error_user_msg": "The user with username: xxx cannot be found.",
+        "fbtrace_id": "A75--NSlLNDOy_UoJEmyUfh"
+    }
+}

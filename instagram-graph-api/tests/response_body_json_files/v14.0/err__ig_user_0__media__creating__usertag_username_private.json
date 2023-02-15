@@ -1,0 +1,12 @@
+{
+    "error": {
+        "message": "Invalid user id",
+        "type": "OAuthException",
+        "code": 110,
+        "error_subcode": 2207018,
+        "is_transient": false,
+        "error_user_title": "Cannot load user with a private account or invalid username",
+        "error_user_msg": "The following user(s) cannot be accessed: heyongpeng",
+        "fbtrace_id": "AzlsYbhFxmXUEk2ihAz27XG"
+    }
+}

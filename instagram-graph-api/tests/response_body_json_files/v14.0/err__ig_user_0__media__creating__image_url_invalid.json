@@ -1,0 +1,12 @@
+{
+    "error": {
+        "message": "Only photo or video can be accepted as media type.",
+        "type": "OAuthException",
+        "code": 9004,
+        "error_subcode": 2207052,
+        "is_transient": false,
+        "error_user_title": "Media download has failed",
+        "error_user_msg": "The media could not be fetched from this uri: https:\/\/preview-ig-container.s3.us-west-2.amazonaws.com\/image-sample\/xx.jpg",
+        "fbtrace_id": "Ac7wf45pZAqRHs6o3BHbdDv"
+    }
+}

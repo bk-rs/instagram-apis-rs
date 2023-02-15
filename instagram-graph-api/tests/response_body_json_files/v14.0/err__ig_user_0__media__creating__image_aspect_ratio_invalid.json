@@ -1,0 +1,12 @@
+{
+    "error": {
+        "message": "The aspect ratio is not supported.",
+        "type": "OAuthException",
+        "code": 36003,
+        "error_subcode": 2207009,
+        "is_transient": false,
+        "error_user_title": "Invalid Aspect Ratio",
+        "error_user_msg": "The submitted image with aspect ratio ('720\/360',) cannot be published. Please submit an image with a valid aspect ratio.",
+        "fbtrace_id": "A002DQF31kPP28mO6-JRtSv"
+    }
+}
