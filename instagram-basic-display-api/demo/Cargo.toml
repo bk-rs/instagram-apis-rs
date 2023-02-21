@@ -4,6 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [[bin]]
+name = "ig_b_d_a_me"
+path = "src/me.rs"
+
+[[bin]]
 name = "ig_b_d_a_user_access_token_simple"
 path = "src/user_access_token_simple.rs"
 

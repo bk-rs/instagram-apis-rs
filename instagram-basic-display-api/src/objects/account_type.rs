@@ -9,3 +9,9 @@ pub enum AccountType {
     #[serde(rename = "PERSONAL")]
     Personal,
 }
+
+impl Default for AccountType {
+    fn default() -> Self {
+        Self::Personal
+    }
+}

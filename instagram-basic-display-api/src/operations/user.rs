@@ -165,5 +165,16 @@ mod tests {
         assert_eq!(body.basic.id, 6489782497758472);
         assert!(body.basic.media_count.is_none());
         assert!(body.media.is_none());
+
+        //
+        let body = serde_json::from_str::<UserResponseBody>(include_str!(
+            "../../tests/response_body_files/me_with_private_account_ok.json"
+        ))
+        .unwrap();
+
+        assert_eq!(body.basic.id, 6489782497758472);
+        assert!(body.basic.is_private());
+        assert!(body.basic.media_count.is_none());
+        assert!(body.media.is_none());
     }
 }
