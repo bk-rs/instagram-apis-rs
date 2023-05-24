@@ -14,6 +14,7 @@ pub struct IgCommentForIgMediaCommentsReadingOperation {
     #[serde(deserialize_with = "deserialize_number_from_string")]
     pub id: u64,
     pub like_count: u32,
+    #[serde(default)]
     pub text: Box<str>,
     pub timestamp: DateTime<Utc>,
     pub username: Box<str>,
@@ -35,6 +36,7 @@ pub struct IgCommentForIgMediaCommentsCreatingOperation {
     #[serde(deserialize_with = "deserialize_number_from_string")]
     pub id: u64,
     pub like_count: u32,
+    #[serde(default)]
     pub text: Box<str>,
     pub timestamp: DateTime<Utc>,
     pub username: Box<str>,
@@ -57,6 +59,7 @@ pub struct IgCommentForIgCommentReadingOperation {
     pub media: IgCommentMedia,
     #[serde(default, deserialize_with = "deserialize_option_number_from_string")]
     pub parent_id: Option<u64>,
+    #[serde(default)]
     pub text: Box<str>,
     pub timestamp: DateTime<Utc>,
     pub username: Box<str>,
@@ -106,6 +109,7 @@ pub struct IgCommentAsReply {
     pub like_count: u32,
     #[serde(deserialize_with = "deserialize_number_from_string")]
     pub parent_id: u64,
+    #[serde(default)]
     pub text: Box<str>,
     pub timestamp: DateTime<Utc>,
     pub username: Box<str>,
